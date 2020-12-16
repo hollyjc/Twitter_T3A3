@@ -14,6 +14,7 @@ class TwitterBot:
         bot = self.bot
         bot.get('https://twitter.com/')
         time.sleep(3)
+        email = bot.find_element_by_class_name('email-input')
 
 
 
