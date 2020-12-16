@@ -25,8 +25,17 @@ class TwitterBot:
     
     def like_tweet(self,hashtag):
         bot = self.bot
-        botbot.get('https://twitter.com/search?q=' + hash '%23otter&src=typed_query')
+        botbot.get('https://twitter.com/search?q='+hash+'%23otter&src=typed_query')
+        time.sleep(3)
+        for i in range (1,3):
+            bot.execute_script('window.scrollTo(0,document.body.scrollHeight)')
+            time.sleep(2)
+            tweets = bot.find_elements_by_class_name('tweet')
+            links = [elem.get_attribute('data-permalink-path') for elem in 
+            tweets]
+            print(links)
 
 
-otter_twitter= TwitterBot('email', 'password')
+otter_twitter= TwitterBot('username', 'password')
 otter_twitter.login()
+otter_twitter.like_tweet('otter')
