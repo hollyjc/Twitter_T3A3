@@ -33,7 +33,13 @@ class TwitterBot:
             tweets = bot.find_elements_by_class_name('tweet')
             links = [elem.get_attribute('data-permalink-path') for elem in 
             tweets]
-            print(links)
+            for link in links:
+                bot.get('https://twitter.com' + link)
+                try:
+                    bot.find_elements_by_class_name('HeartAnimation').click()
+                    time.sleep(45)
+                except Exception as ex:
+                    time.sleep(120)
 
 
 otter_twitter= TwitterBot('username', 'password')
